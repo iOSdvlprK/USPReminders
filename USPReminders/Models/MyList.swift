@@ -10,7 +10,7 @@ import CoreData
 import AppKit
 
 @objc(MyList)
-class MyList: NSManagedObject {
+class MyList: NSManagedObject, BaseModel {
     
 }
 
@@ -22,7 +22,6 @@ extension MyList {
 
     @NSManaged public var color: NSColor?
     @NSManaged public var name: String?
-
 }
 
 extension MyList : Identifiable {
