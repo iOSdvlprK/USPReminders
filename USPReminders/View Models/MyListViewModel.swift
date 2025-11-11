@@ -26,4 +26,19 @@ struct MyListViewModel: Identifiable {
     var color: Color {
         Color(myList.color ?? .clear)
     }
+    
+    // 2. If you ever need to update the name/color from SwiftUI
+    mutating func update(name: String) {
+        myList.name = name
+    }
+    mutating func update(color: NSColor) {
+        myList.color = color
+    }
+}
+
+// 1. Make it Equatable for free diffing
+extension MyListViewModel: Equatable {
+    static func == (lhs: MyListViewModel, rhs: MyListViewModel) -> Bool {
+        lhs.id == rhs.id
+    }
 }
