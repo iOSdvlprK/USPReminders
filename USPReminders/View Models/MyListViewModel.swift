@@ -27,6 +27,19 @@ struct MyListViewModel: Identifiable {
         Color(myList.color ?? .clear)
     }
     
+    var itemsCount: Int {
+        items.count
+    }
+    
+    var items: [MyListItemViewModel] {
+        guard let items = myList.items,
+              let myItems = (items.allObjects as? [MyListItem]) else {
+            return []
+        }
+        
+        return myItems.filter { $0.isCompleted == false }.map(MyListItemViewModel.init)
+    }
+    
     // 2. If you ever need to update the name/color from SwiftUI
     mutating func update(name: String) {
         myList.name = name
