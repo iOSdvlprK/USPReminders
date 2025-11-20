@@ -11,6 +11,8 @@ struct ListItemCell: View {
     @State private var active: Bool = false
     let item: MyListItemViewModel
     
+    var onListItemDeleted: (MyListItemViewModel) -> Void = { _ in }
+    
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
             Image(systemName: Constants.Icons.circle)
@@ -32,6 +34,9 @@ struct ListItemCell: View {
             if active {
                 Image(systemName: Constants.Icons.multiplyCircle)
                     .foregroundStyle(.red)
+                    .onTapGesture {
+                        onListItemDeleted(item)
+                    }
                 
                 Image(systemName: Constants.Icons.exclaimationMarkCircle)
                     .foregroundStyle(.purple)
